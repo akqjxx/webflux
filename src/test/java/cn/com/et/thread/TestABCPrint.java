@@ -18,17 +18,21 @@ public class TestABCPrint {
 	 */
 	public static void main(String[] args) {
 		ABCDemo demo = new ABCDemo();
-		for (int i = 0; i < 20; i++) {
-			new Thread(() -> {
+		new Thread(() -> {
+			for (int i = 0; i < 20; i++) {
 				demo.ptA();
-			}, "A").start();
-			new Thread(() -> {
+			}
+		}, "A").start();
+		new Thread(() -> {
+			for (int i = 0; i < 20; i++) {
 				demo.ptB();
-			}, "B").start();
-			new Thread(() -> {
+			}
+		}, "B").start();
+		new Thread(() -> {
+			for (int i = 0; i < 20; i++) {
 				demo.ptC();
-			}, "C").start();
-		}
+			}
+		}, "C").start();
 
 	}
 
@@ -62,7 +66,7 @@ class ABCDemo {
 		lock.lock();
 		try {
 			while (number != 2) {
-				condition1.await();
+				condition2.await();
 			}
 			for (int i = 1; i < 2; i++) {
 				System.out.println(Thread.currentThread().getName() + "\t" + i);
@@ -79,7 +83,7 @@ class ABCDemo {
 		lock.lock();
 		try {
 			while (number != 3) {
-				condition1.await();
+				condition3.await();
 			}
 			for (int i = 1; i < 2; i++) {
 				System.out.println(Thread.currentThread().getName() + "\t" + i);
